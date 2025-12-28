@@ -16,8 +16,10 @@ pipeline {
     stage('Docker Publish') {
       steps {
         script {
-          docker.withRegistry('', registryCredential){
+          def dockerImage = docker.build("$registry")
+          docker.withRegisrty('', "$registryCredential"){
             dockerImage.push()
+            dockerImage.push("latest")
           }
         }
 
