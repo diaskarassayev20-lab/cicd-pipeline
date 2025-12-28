@@ -17,7 +17,7 @@ pipeline {
       steps {
         script {
           def dockerImage = docker.build("$registry")
-          docker.withRegisrty('', "$registryCredential"){
+          docker.withRegistry('', "$registryCredential"){
             dockerImage.push()
             dockerImage.push("latest")
           }
